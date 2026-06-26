@@ -1,0 +1,9 @@
+# macOS
+.DS_Store
+
+# Local preview tooling
+.claude/
+
+# Source video files — the site only ships the derived gameplay.mp4/.webm
+assets/Gameplay.mov
+assets/gameplay2.mp4

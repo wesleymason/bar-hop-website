@@ -1,0 +1,391 @@
+/* =========================================================
+   Bar Hop — landing page styles
+   Palette pulled straight from the game:
+   warm gold/amber field · deep chocolate chrome ·
+   bright yellow buttons · glowing teal target hole
+   ========================================================= */
+
+:root {
+  --bg:          #2e1a0a;   /* warm dark cocoa */
+  --bg-2:        #3a2210;   /* mid brown */
+  --surface:     #4a2e16;   /* card brown */
+  --surface-2:   #573519;   /* raised brown */
+  --line:        rgba(255, 226, 170, 0.18);
+
+  --gold:        #ffc829;   /* bright button yellow */
+  --gold-strong: #ffd60a;
+  --amber:       #e8941f;   /* play-field orange */
+  --teal:        #2fe0c8;   /* glowing target hole */
+  --teal-soft:   rgba(47, 224, 200, 0.18);
+
+  --text:        #fdf6ea;   /* warm white */
+  --muted:       #cbb79c;   /* warm gray */
+  --ball:        #ffffff;
+
+  --maxw: 1120px;
+  --radius: 18px;
+  --shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.65);
+  --header-h: 62px;
+
+  --font-head: "Baloo 2", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-body: "Nunito Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--text);
+  background:
+    radial-gradient(1200px 700px at 80% -10%, rgba(232, 148, 31, 0.22), transparent 60%),
+    radial-gradient(900px 600px at 0% 0%, rgba(47, 224, 200, 0.12), transparent 55%),
+    linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+  background-attachment: fixed;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img { max-width: 100%; display: block; }
+
+a { color: var(--teal); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+h1, h2, h3 {
+  font-family: var(--font-head);
+  line-height: 1.08;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+:focus-visible {
+  outline: 3px solid var(--teal);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 0.6rem 1.15rem;
+  border-radius: 999px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+  white-space: nowrap;
+}
+.btn:hover { text-decoration: none; }
+
+.btn-gold {
+  background: linear-gradient(180deg, var(--gold-strong), var(--gold));
+  color: #3a2406;
+  box-shadow: 0 8px 22px -8px rgba(255, 200, 41, 0.7);
+}
+.btn-gold:hover { transform: translateY(-2px); filter: brightness(1.04); }
+.btn-gold:active { transform: translateY(0); }
+
+/* ---------- App Store badge ---------- */
+.app-store-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: #000;
+  color: #fff;
+  padding: 0.62rem 1.15rem 0.62rem 1rem;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.8), 0 0 0 4px rgba(255, 255, 255, 0.04);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.app-store-badge:hover {
+  text-decoration: none;
+  transform: translateY(-2px);
+  box-shadow: 0 16px 36px -12px rgba(0, 0, 0, 0.85), 0 0 0 4px rgba(47, 224, 200, 0.18);
+}
+.badge-apple { width: 26px; height: 26px; color: #fff; flex: none; }
+.badge-text { display: flex; flex-direction: column; line-height: 1.05; text-align: left; }
+.badge-small { font-size: 0.62rem; letter-spacing: 0.02em; opacity: 0.92; }
+.badge-large { font-family: var(--font-head); font-weight: 700; font-size: 1.22rem; }
+
+/* ---------- Sticky header ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  height: var(--header-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  /* inset to the same centered content box as the hero, so logo/CTA align with the content edges */
+  padding: 0 max(clamp(1.5rem, 4vw, 2.5rem), calc((100% - 50.75rem) / 2));
+  background: rgba(46, 26, 10, 0.78);
+  backdrop-filter: saturate(160%) blur(12px);
+  -webkit-backdrop-filter: saturate(160%) blur(12px);
+  border-bottom: 1px solid var(--line);
+}
+.brand { display: inline-flex; align-items: center; gap: 0.9rem; color: var(--text); }
+.brand:hover { text-decoration: none; }
+.brand-icon { border-radius: 9px; box-shadow: 0 2px 8px rgba(0,0,0,0.4); }
+.brand-name { font-family: "Chicle", var(--font-head); font-weight: 400; font-size: 1.7rem; letter-spacing: -0.01em; color: #FFD85E; }
+
+/* ---------- Layout helpers ---------- */
+section:not(.hero) { padding: clamp(3.5rem, 8vw, 6.5rem) clamp(1rem, 4vw, 2rem); }
+.section-head { max-width: 640px; margin: 0 auto clamp(2rem, 5vw, 3.25rem); text-align: center; }
+.section-head h2 { font-size: clamp(1.7rem, 4.4vw, 2.6rem); font-weight: 800; }
+.section-head p { color: var(--muted); font-size: 1.08rem; margin: 0.8rem 0 0; }
+
+/* ---------- Hero ---------- */
+.hero {
+  position: relative;
+  overflow: hidden;
+  height: calc(100dvh - var(--header-h));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* less padding on top than bottom — nudges the centered content upward */
+  padding: clamp(0.75rem, 2.5vmin, 1.75rem) clamp(1.5rem, 4vw, 2.5rem) clamp(1.5rem, 5vmin, 4rem);
+}
+.hero-glow {
+  position: absolute;
+  top: -10%;
+  right: -5%;
+  width: 520px;
+  height: 520px;
+  background: radial-gradient(circle, var(--teal-soft), transparent 65%);
+  filter: blur(20px);
+  pointer-events: none;
+  z-index: 0;
+}
+.hero-inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(2rem, 5vw, 3.5rem);
+  align-items: center;
+}
+.hero-icon {
+  width: clamp(52px, 10vmin, 84px);
+  height: clamp(52px, 10vmin, 84px);
+  border-radius: 20px;
+  box-shadow: 0 14px 30px -10px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.06);
+  margin-bottom: clamp(0.5rem, 2vmin, 1.2rem);
+}
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.72rem;
+  font-family: "Space Mono", monospace;
+  font-weight: 400;
+  color: var(--teal);
+  margin: 0 0 0.9rem;
+}
+.hero-title {
+  font-size: clamp(1.6rem, min(6vw, 5.5vh), 4rem);
+  font-weight: 800;
+  margin-bottom: clamp(0.6rem, 2vmin, 1.1rem);
+}
+.hero-title .accent {
+  color: #FFD85E;
+}
+.hero-sub {
+  color: var(--muted);
+  font-size: clamp(0.9rem, min(2.4vw, 2.2vh), 1.18rem);
+  max-width: 36ch;
+  margin: 0 0 clamp(1rem, 3vmin, 1.8rem);
+}
+.hero-copy { display: flex; flex-direction: column; align-items: flex-start; text-align: left; }
+.hero-actions { display: flex; flex-direction: column; align-items: flex-start; gap: 1.25rem; }
+.hero-meta { color: var(--muted); font-size: 0.85rem; margin: 0; }
+
+.hero-device { display: flex; justify-content: center; align-items: center; }
+
+/* ---------- Phone frame ---------- */
+.phone {
+  position: relative;
+  --phone-w: 280px;
+  width: var(--phone-w);
+  /* All frame metrics scale with --phone-w so corners stay proportional at any size */
+  padding: calc(var(--phone-w) * 0.034);
+  background: linear-gradient(160deg, var(--bg-2), var(--bg) 60%);
+  border-radius: calc(var(--phone-w) * 0.14);
+  box-shadow:
+    var(--shadow),
+    inset 0 0 0 2px rgba(255, 255, 255, 0.06);
+}
+.phone::before {
+  /* speaker / camera pill */
+  content: "";
+  position: absolute;
+  top: calc(var(--phone-w) * 0.067);
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(var(--phone-w) * 0.28);
+  height: calc(var(--phone-w) * 0.024);
+  background: #000;
+  border-radius: 999px;
+  z-index: 2;
+  opacity: 0.85;
+}
+.phone img,
+.phone video {
+  width: 100%;
+  height: auto;
+  border-radius: calc(var(--phone-w) * 0.11);
+  display: block;
+}
+.phone-float {
+  /* Scale width so height always fits; radius tracks --phone-w so the whole phone scales uniformly */
+  --phone-w: min(300px, 82vw, calc((100dvh - var(--header-h) - 8rem) * 0.46));
+}
+
+/* ---------- Screenshot gallery ---------- */
+.shots {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: clamp(1.5rem, 4vw, 2.5rem);
+  justify-items: center;
+}
+.shot { margin: 0; max-width: 300px; text-align: center; }
+.shot .phone { width: 250px; }
+.shot figcaption {
+  margin-top: 1.2rem;
+  color: var(--muted);
+  font-size: 0.96rem;
+}
+.shot figcaption strong {
+  display: block;
+  color: var(--text);
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 1.12rem;
+  margin-bottom: 0.25rem;
+}
+
+/* ---------- Features ---------- */
+.feature-grid {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.2rem;
+}
+.feature {
+  background: linear-gradient(180deg, var(--surface), var(--surface-2));
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.6rem 1.5rem;
+  transition: transform 0.18s ease, border-color 0.18s ease;
+}
+.feature:hover { transform: translateY(-4px); border-color: rgba(47, 224, 200, 0.35); }
+.feature-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px; height: 46px;
+  border-radius: 13px;
+  color: var(--teal);
+  background: var(--teal-soft);
+  margin-bottom: 1rem;
+}
+.feature-icon svg { width: 24px; height: 24px; }
+.feature h3 { font-size: 1.22rem; font-weight: 700; margin-bottom: 0.4rem; }
+.feature p { color: var(--muted); margin: 0; font-size: 0.98rem; }
+
+/* ---------- Final CTA band ---------- */
+.cta-band { padding-bottom: clamp(4rem, 9vw, 7rem); }
+.cta-inner {
+  position: relative;
+  overflow: hidden;
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+  background: linear-gradient(180deg, var(--surface-2), var(--surface));
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  padding: clamp(2.5rem, 6vw, 4rem) clamp(1.5rem, 5vw, 3rem);
+  box-shadow: var(--shadow);
+}
+.cta-glow {
+  position: absolute;
+  inset: -40% 30% auto;
+  height: 320px;
+  background: radial-gradient(circle at 50% 0%, rgba(255, 200, 41, 0.25), transparent 70%);
+  pointer-events: none;
+}
+.cta-inner > * { position: relative; z-index: 1; }
+.cta-icon {
+  width: 72px; height: 72px;
+  border-radius: 18px;
+  margin: 0 auto 1.2rem;
+  box-shadow: 0 12px 28px -10px rgba(0,0,0,0.6);
+}
+.cta-inner h2 { font-size: clamp(1.7rem, 5vw, 2.6rem); font-weight: 800; }
+.cta-inner p { color: var(--muted); font-size: 1.1rem; margin: 0.7rem 0 1.8rem; }
+.cta-inner .app-store-badge { margin: 0 auto; }
+
+/* ---------- Footer ---------- */
+.site-footer {
+  border-top: 1px solid var(--line);
+  background: rgba(0, 0, 0, 0.25);
+  padding: 1.25rem clamp(1rem, 4vw, 2rem);
+}
+.footer-inner {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.3rem 1.6rem;
+}
+.footer-links { display: flex; gap: 1.4rem; flex-wrap: wrap; }
+.footer-links a { color: var(--muted); font-weight: 600; }
+.footer-links a:hover { color: var(--text); }
+.footer-copy { color: var(--muted); font-size: 0.84rem; margin: 0; }
+
+/* ---------- Scroll reveal (only active when JS adds .js to <html>) ---------- */
+.js .reveal {
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+.js .reveal.visible { opacity: 1; }
+
+/* ---------- Desktop ---------- */
+@media (min-width: 680px) {
+  .hero-inner {
+    grid-template-columns: minmax(0, 30rem) auto;
+    justify-content: center;
+    gap: clamp(1rem, 3vw, 2rem); /* shrinks as the viewport narrows so text + phone get closer before stacking */
+  }
+}
+
+@media (max-width: 679.98px) {
+  /* stacked: let the hero grow with its content (scroll instead of clipping) */
+  .hero {
+    height: auto;
+    min-height: calc(100dvh - var(--header-h));
+    overflow: visible;
+  }
+  /* phone above the text, both left-aligned */
+  .hero-device { order: -1; justify-content: flex-start; }
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; scroll-behavior: auto !important; }
+  .js .reveal { opacity: 1; transform: none; transition: none; }
+  .phone-float { animation: none; }
+}
