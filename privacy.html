@@ -18,8 +18,8 @@
       f.parentNode.insertBefore(js, f);
     })(window, document, "script", "https://bzrcdn.openai.com/sdk/oaiq.min.js");
 
-    // Pixel ID from Ads Manager → Conversions. debug:true logs events to the console; remove once verified.
-    oaiq("init", { pixelId: "19XJ55HW6v8sWBikZX3B9s", debug: true });
+    // Pixel ID from Ads Manager → Conversions.
+    oaiq("init", { pixelId: "19XJ55HW6v8sWBikZX3B9s" });
     oaiq("measure", "page_viewed", {
       type: "contents",
       contents: [{ id: "privacy", name: "Privacy Policy", content_type: "page" }]
