@@ -4,6 +4,28 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <!-- ChatGPT Ads measurement pixel -->
+  <script>
+    (function (w, d, s, u) {
+      if (w.oaiq) return;
+      var q = function () { q.q.push(arguments); };
+      q.q = [];
+      w.oaiq = q;
+      var js = d.createElement(s);
+      js.async = true;
+      js.src = u;
+      var f = d.getElementsByTagName(s)[0];
+      f.parentNode.insertBefore(js, f);
+    })(window, document, "script", "https://bzrcdn.openai.com/sdk/oaiq.min.js");
+
+    // Pixel ID from Ads Manager → Conversions. debug:true logs events to the console; remove once verified.
+    oaiq("init", { pixelId: "19XJ55HW6v8sWBikZX3B9s", debug: true });
+    oaiq("measure", "page_viewed", {
+      type: "contents",
+      contents: [{ id: "home", name: "Bar Hop landing page", content_type: "page" }]
+    });
+  </script>
+
   <!-- Google Search Console verification -->
   <meta name="google-site-verification" content="99DyJeQznOienS9ne6PP5O8R6D0FMGjsKNd3wcqGZ1I" />
 
@@ -141,6 +163,15 @@
         });
       }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
       els.forEach(function (el) { io.observe(el); });
+    })();
+
+    // ChatGPT Ads: log a conversion (lead) when the App Store download button is clicked
+    (function () {
+      document.querySelectorAll('.app-store-badge').forEach(function (el) {
+        el.addEventListener('click', function () {
+          if (window.oaiq) oaiq("measure", "lead_created", { type: "customer_action" });
+        });
+      });
     })();
   </script>
 </body>
