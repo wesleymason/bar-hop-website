@@ -35,6 +35,14 @@
     twq('config','rh98h');
   </script>
 
+  <!-- X conversion event: App Store Click (fires only on store link clicks) -->
+  <script>
+    document.addEventListener('click', function (e) {
+      var a = e.target && e.target.closest ? e.target.closest('a[href*="apps.apple.com"]') : null;
+      if (a && window.twq) { twq('event', 'tw-rh98h-rhec2', {}); }
+    });
+  </script>
+
   <!-- Google Search Console verification -->
   <meta name="google-site-verification" content="99DyJeQznOienS9ne6PP5O8R6D0FMGjsKNd3wcqGZ1I" />
 

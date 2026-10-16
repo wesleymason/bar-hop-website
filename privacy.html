@@ -56,6 +56,14 @@
     a=t.getElementsByTagName(n)[0],a.parentNode.insertBefore(u,a))}(window,document,'script');
     twq('config','rh98h');
   </script>
+
+  <!-- X conversion event: App Store Click (fires only on store link clicks) -->
+  <script>
+    document.addEventListener('click', function (e) {
+      var a = e.target && e.target.closest ? e.target.closest('a[href*="apps.apple.com"]') : null;
+      if (a && window.twq) { twq('event', 'tw-rh98h-rhec2', {}); }
+    });
+  </script>
 </head>
 <body>
   <header class="site-header">
