@@ -57,11 +57,30 @@
     twq('config','rh98h');
   </script>
 
-  <!-- X conversion event: App Store Click (fires only on store link clicks) -->
+
+  <!-- Pinterest Tag -->
+  <script>
+    !function(e){if(!window.pintrk){window.pintrk = function () {
+    window.pintrk.queue.push(Array.prototype.slice.call(arguments))};var
+      n=window.pintrk;n.queue=[],n.version="3.0";var
+      t=document.createElement("script");t.async=!0,t.src=e;var
+      r=document.getElementsByTagName("script")[0];
+      r.parentNode.insertBefore(t,r)}}("https://s.pinimg.com/ct/core.js");
+    pintrk('load', '2613186552150');
+    pintrk('page');
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none;" alt=""
+      src="https://ct.pinterest.com/v3/?event=init&tid=2613186552150&noscript=1" />
+  </noscript>
+  <!-- end Pinterest Tag -->
+  <!-- Ad conversion events: fire when a visitor clicks through to the App Store -->
   <script>
     document.addEventListener('click', function (e) {
       var a = e.target && e.target.closest ? e.target.closest('a[href*="apps.apple.com"]') : null;
-      if (a && window.twq) { twq('event', 'tw-rh98h-rhec2', {}); }
+      if (!a) return;
+      if (window.twq) { twq('event', 'tw-rh98h-rhec2', {}); }
+      if (window.pintrk) { pintrk('track', 'lead'); }
     });
   </script>
 </head>
